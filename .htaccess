@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css|swf)$ protected/route.php
