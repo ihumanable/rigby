@@ -6,7 +6,7 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class rValues {
+class fValues {
   private static $values;
   private static $init = false;
   

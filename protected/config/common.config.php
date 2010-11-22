@@ -4,8 +4,6 @@
  * The common configuration is where non-environment specific application configuration goes.
  */
 
-define('RIGBY_VERSION', '0.1ß');
-
 //Url resource roots
 define('SELF_URL', fURL::getDomain() . $_SERVER['REQUEST_URI'] . (substr($_SERVER['REQUEST_URI'], -1) == '/' ? '' : '/'));
 

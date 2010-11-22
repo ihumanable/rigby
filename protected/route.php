@@ -3,12 +3,7 @@
 //Bootstrap the core of Rigby
 include 'init.php';
 
-//The environment.php just sets up what environment we are in
-include CONFIG_ROOT . 'environment.config.php';
-include CONFIG_ROOT . 'common.config.php';
-include CONFIG_ROOT . ENVIRONMENT . '.config.php';
-
-$elements = rRouter::parse();
+$elements = fRouter::parse();
 
 $path   = SRC_ROOT . '/';
 $target = null;
@@ -18,7 +13,7 @@ $args   = array();
 $mode   = 'index';
 
 foreach($elements as $element) {
-  if(in_array($element, rRouter::reserved())) {
+  if(in_array($element, fRouter::reserved())) {
     $action = $element;
     $last = $element;
     $mode = $element;
@@ -78,7 +73,7 @@ if($bypass || is_file($path . $target . '.php')) {
   include $path . $target . '.php';
 } else {
   fSession::set('error-route', SELF_URL);
-  rRouter::error(404);
+  fRouter::error(404);
 }
 
 ?>

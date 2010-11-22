@@ -2,12 +2,12 @@
 
 /**
  * Extend the base fActiveRecord to put in common timestamp code
- * @see fActiveRecord
+ * @see ActiveRecord
  * @see fORMDate
  * @author Matt Nowack
  * @package Rigby
  */
-class rActiveRecord extends fActiveRecord {
+class ActiveRecord extends fActiveRecord {
   
   /**
    * Sets up the created_at and updated_at timestamp for all ActiveRecord objects

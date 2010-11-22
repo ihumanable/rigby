@@ -5,11 +5,11 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class rResponse {
+class fResponse {
   
   /**
    * Redirect with an error message
-   * @see Response::message()
+   * @see fResponse::message()
    * @global BASE_URL The default base url of the application
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, defaults to BASE_URL
@@ -22,7 +22,7 @@ class rResponse {
   
   /**
    * Redirect with a success message
-   * @see Response::message()
+   * @see fResponse::message()
    * @see BASE_URL The default base url of the application
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, default to BASE_URL
@@ -35,7 +35,7 @@ class rResponse {
   /**
    * Perform a redirect with a flash message
    * @see fMessaging::create()
-   * @see Response::redirect()
+   * @see fResponse::redirect()
    * @param string $type The type of message to create
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param string $target The url to redirect to
@@ -51,24 +51,24 @@ class rResponse {
   
   /**
    * Perform a redirect with Value persistence, causes script to immediately terminate
-   * @see rValues
-   * @see rRouter::url()
+   * @see fValues
+   * @see fRouter::url()
    * @see fURL::redirect()
    * @param string $target The url to redirect to
    * @return nothing
    */
   static function redirect($target) {    
-    rValues::reset();
+    fValues::reset();
     
     foreach($_GET as $key => $value) {
-      rValues::set($key, $value);
+      fValues::set($key, $value);
     }
     
     foreach($_POST as $key => $value) {
-      rValues::set($key, $value);
+      fValues::set($key, $value);
     }
     
-    rValues::persist();
+    fValues::persist();
     
     fURL::redirect($target);
     exit();

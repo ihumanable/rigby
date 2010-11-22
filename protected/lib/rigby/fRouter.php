@@ -5,7 +5,7 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class rRouter {
+class fRouter {
   private static $parsed = null;
   
   /**
@@ -66,7 +66,7 @@ class rRouter {
   /**
    * Creates a fully qualified url from a collection of parts
    * Ex:
-   *  rRouter::url('cart', 'items', 8) => http://example.com/cart/items/8/
+   *  fRouter::url('cart', 'items', 8) => http://example.com/cart/items/8/
    * @global BASE_URL The url base to start the url with
    * @param mixed varargs The parts of the url to put together
    * @return string The fully qualified url
@@ -89,8 +89,8 @@ class rRouter {
   /**
    * Creates a fully qualified link as an anchor from a collection of parts
    * Ex:
-   *  rRouter::link('Example', 'cart', 'items', 8) => <a href="http://example.com/cart/items/8/">Example</a>
-   * @see rRouter::url()
+   *  fRouter::link('Example', 'cart', 'items', 8) => <a href="http://example.com/cart/items/8/">Example</a>
+   * @see fRouter::url()
    * @param string $text The text for the link
    * @param mixed varargs The parts of the url to put together
    * @return string The fully qualified link
@@ -106,11 +106,11 @@ class rRouter {
   
   /**
    * Route to the error handle for a certain HTTP error code
-   * @see rRouter::redirect()
+   * @see fRouter::redirect()
    * @param integer $code The HTTP error code to handle
    * @return nothing
    */
   static function error($code) {
-    rResponse::redirect(self::url('error', $code));
+    fResponse::redirect(self::url('error', $code));
   }
 }

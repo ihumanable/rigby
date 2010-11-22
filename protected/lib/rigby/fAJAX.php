@@ -6,7 +6,7 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class rAJAX {
+class fAJAX {
   
   /**
    * Reply with an error message

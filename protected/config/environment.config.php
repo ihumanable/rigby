@@ -19,6 +19,9 @@
    */
   define('URL_SUFFIX', 'rigby');
   
+  /**
+   * TIMEZONE - Default timezone for the application
+   */
   define('TIMEZONE', 'UTC');
 
 ?>

@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
   $ftpServer = '';
   $ftpUsername = '';

@@ -19,26 +19,10 @@ define('SRC_ROOT', realpath(dirname(__FILE__) . '/../') . '/');
     define('SASS_ROOT', RESOURCE_ROOT . 'sass/');
     define('TEMPLATE_ROOT', RESOURCE_ROOT . 'templates/');
 
-/**
- * Special Rigby __autoload function which handles core, Rigby, and Flourish classes
- * @param string $class The class to autoload
- */
-function __autoload($class) {
-  if($class[0] === 'f') {
-    $candidate = FLOURISH_CLASS_ROOT . $class . '.php';
-  } else if($class[0] === 'r') {
-    $candidate = RIGBY_ROOT . $class . '.php';
-  } else {
-    $candidate = CLASS_ROOT . $class . '.php';
-  }
-  
-  if(is_file($candidate)) {
-    include $candidate;
-    return;
-  } else {
-    throw new Exception('The class ' . $class . ' could not be loaded');
-  }
-}
+include CONFIG_ROOT . 'rigby.config.php';
+include CONFIG_ROOT . 'environment.config.php';
+include CONFIG_ROOT . 'common.config.php';
+include CONFIG_ROOT . ENVIRONMENT . '.config.php';
 
 /**
  * At this point all filesystem constants are set up and all classes should be automatically accessible.

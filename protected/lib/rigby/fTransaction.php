@@ -6,7 +6,7 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class rTransaction {
+class fTransaction {
   
   /** 
    * Begins a database transaction
