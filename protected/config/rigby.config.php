@@ -1,6 +1,9 @@
 <?php
   
-  define('RIGBY_VERSION', '0.1ß');
+  /**
+   * RIGBY_VERSION - The version number of the Rigby Framework
+   */
+  define('RIGBY_VERSION', '0.1');
   
   /**
    * Special Rigby __autoload function which handles core, Rigby, and Flourish classes
@@ -10,10 +13,11 @@
     if($class[0] === 'f') {
       if(in_array($class, array('ActiveRecord',
                                 'fAJAX',
+                                'fForm',
                                 'fResponse',
                                 'fRouter',
                                 'fTransaction',
-                                'fValues')))       {
+                                'fValues'       ))) {
         $candidate = RIGBY_ROOT . $class . '.php';
       } else {
         $candidate = FLOURISH_CLASS_ROOT . $class . '.php';
