@@ -13,7 +13,9 @@
     if($class[0] === 'f') {
       if(in_array($class, array('ActiveRecord',
                                 'fAJAX',
+                                'fErrors',
                                 'fForm',
+                                'fFormInput',
                                 'fResponse',
                                 'fRouter',
                                 'fTransaction',

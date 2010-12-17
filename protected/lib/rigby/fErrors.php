@@ -1,25 +1,19 @@
 <?php
 
-/** 
- * This class serializes form values on response so forms can be repopulated
- * @see fSession
- * @author Matt Nowack
- * @package Rigby
- */
-class fValues {
-  private static $values;
+class fErrors {
+  private static $errors;
   private static $init = false;
   
   /**
-   * If needed, initialize the static $values member
+   * If needed, initialize the static $errors member
    * Initializing also clears the values out of session so they don't become "sticky"
    * @return nothing
    */
   static function init() {
     if(!self::$init) {
-      self::$values = fSession::get('rigby-values', array());
+      self::$errors = fSession::get('rigby-errors', array());
       self::$init = true;
-      fSession::delete('rigby-values');
+      fSession::delete('rigby-errors');
     }
   }
   
@@ -28,22 +22,22 @@ class fValues {
    * @return nothing
    */
   static function reset() {
-    fSession::delete('rigby-values');
-    self::$values = array();
+    fSession::delete('rigby-errors');
+    self::$errors = array();
     self::$init = false;
   }
   
   /**
    * Get the value out of the session
-   * @see fValues::init()
+   * @see fErrors::init()
    * @param string $key The key to retrieve
    * @param optional mixed $default The value to return if the key can not be found, defaults to null
    * @return mixed The value if the key is present, $default otherwise
    */
   static function get($key, $default = null) {
     self::init();
-    if(array_key_exists($key, self::$values)) {
-      return self::$values[$key];
+    if(array_key_exists($key, self::$errors)) {
+      return self::$errors[$key];
     }
     return $default;
   } 
@@ -55,7 +49,8 @@ class fValues {
    * @return nothing
    */
   static function set($key, $value) {
-    self::$values[$key] = $value;
+    self::init();
+    self::$errors[$key] = $value;
   }
   
   /** 
@@ -63,7 +58,6 @@ class fValues {
    * @return nothing
    */
   static function persist() {
-    fSession::set('rigby-values', self::$values);
+    fSession::set('rigby-errors', self::$errors);
   }
-  
 }

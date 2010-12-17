@@ -10,13 +10,14 @@ class fResponse {
   /**
    * Redirect with an error message
    * @see fResponse::message()
+   * @see fErrors::persist()
    * @global BASE_URL The default base url of the application
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, defaults to BASE_URL
    * @return nothing
    */
   static function error($message, $target = BASE_URL) {
-    
+    fErrors::persist();
     self::message('error', $message, $target);
   }
   

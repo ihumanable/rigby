@@ -70,7 +70,12 @@ switch($mode) {
 }
 
 if($bypass || is_file($path . $target . '.php')) {
-  include $path . $target . '.php';
+  $realpath = realpath($path . $target . '.php');
+  if(strpos($realpath, PROTECTED_ROOT) === FALSE) {
+    include $path . $target . '.php';
+  } else {
+    fRouter::error(403);
+  }
 } else {
   fSession::set('error-route', SELF_URL);
   fRouter::error(404);

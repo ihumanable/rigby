@@ -3,3 +3,12 @@
 
 #footer {
   margin-top: 30px; }
+
+form.rigby-form label {
+  display: inline-block;
+  width: 100px; }
+form.rigby-form span.rigby-form-error {
+  padding: 1px 5px;
+  background: #ff0000;
+  color: #ffffff;
+  font-weight: bold; }
