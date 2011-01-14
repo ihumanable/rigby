@@ -2,11 +2,11 @@
 
 /**
  * Database Transaction helper class
- * @see fORMDatabase
+ * @see rORMDatabase
  * @author Matt Nowack
  * @package Rigby
  */
-class fTransaction {
+class rTransaction {
   
   /** 
    * Begins a database transaction

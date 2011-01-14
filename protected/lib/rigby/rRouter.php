@@ -5,19 +5,74 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class fRouter {
+class rRouter {
   private static $parsed = null;
+  private static $routes = array();
+  
+  /**
+   * Gets a saved route for a key
+   * @param string $key The key to look up a route for
+   * @param optional string $append A child to append to the route, defaults to ''
+   * @return mixed The route if found, false otherwise
+   */
+  static function getRoute($key, $append = '') {
+    if(array_key_exists($key, self::$routes)) {
+      return self::$routes[$key] . $append;
+    }
+    return false;
+  }
+  
+  /**
+   * Sets a key to a saved route
+   * @param string $key The key to use
+   * @param string $route The route to save
+   * @return nothing
+   */
+  static function setRoute($key, $route) {
+    self::$routes[$key] = $route;
+  }
+  
+  /**
+   * Sets a subroute under an existing route
+   * @see rRouter::getRoute()
+   * @see rRouter::setRoute()
+   * @param string $parent The parent key to create a subroute under
+   * @param string $child The child key and directory
+   * @return nothing
+   */
+  static function setSubroute($parent, $child) {
+    $parentRoute = self::getRoute($parent);
+    if($parentRoute) {
+      self::setRoute($child, $parentRoute . $child . '/');
+    }
+  }
+  
+  /**
+   * Helper function, self is common enough this shortcut is nice
+   * @return string The current url
+   */
+  static function self() {
+    return self::getRoute('self');
+  }
+  
+  /**
+   * Helper function, base is common enough this shortcut is nice
+   * @return string The base url
+   */
+  static function base() {
+    return self::getRoute('base');
+  }
   
   /**
    * Parses the Request URI
    * This function memoizes its result so it is safe to call it multiple times without paying a penalty
    * @global URL_SUFFIX Checks the URL Suffix so it won't be included in the parsed array
-   * @see self::$parsed
+   * @see rRouter::$parsed
    * @return array<string> The components of the URI broken into an array
    */
   static function parse() {
     if(self::$parsed === null) {    
-      $elements = explode('/', fURL::get());
+      $elements = explode('/', rURL::get());
       
       //Remove the first element if blank
       if(count($elements)) {
@@ -28,7 +83,7 @@ class fRouter {
       
       //Remove the URL_SUFFIX
       if(count($elements)) {
-        if($elements[0] == URL_SUFFIX) {
+        if($elements[0] == rApplication::getSuffix()) {
           array_shift($elements);
         }
       }
@@ -66,13 +121,13 @@ class fRouter {
   /**
    * Creates a fully qualified url from a collection of parts
    * Ex:
-   *  fRouter::url('cart', 'items', 8) => http://example.com/cart/items/8/
+   *  rRouter::url('cart', 'items', 8) => http://example.com/cart/items/8/
    * @global BASE_URL The url base to start the url with
    * @param mixed varargs The parts of the url to put together
    * @return string The fully qualified url
    */
   static function url() {
-    $result = BASE_URL;
+    $result = self::base();
     $arguments = func_get_args();
     if(is_array($arguments)) {
       foreach($arguments as $argument) {
@@ -89,7 +144,7 @@ class fRouter {
   /**
    * Creates a fully qualified link as an anchor from a collection of parts
    * Ex:
-   *  fRouter::link('Example', 'cart', 'items', 8) => <a href="http://example.com/cart/items/8/">Example</a>
+   *  rRouter::link('Example', 'cart', 'items', 8) => <a href="http://example.com/cart/items/8/">Example</a>
    * @see fRouter::url()
    * @param string $text The text for the link
    * @param mixed varargs The parts of the url to put together
@@ -111,6 +166,6 @@ class fRouter {
    * @return nothing
    */
   static function error($code) {
-    fResponse::redirect(self::url('error', $code));
+    rResponse::redirect(self::url('error', $code));
   }
 }

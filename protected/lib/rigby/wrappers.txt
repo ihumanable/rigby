@@ -1,0 +1,17 @@
+Rigby provides a ton of wrapper classes that don't appear to do much if anything, why do they exist?
+
+First off, the wrapper classes are not an attempt to take credit for the brilliant work Will Bond has done.
+The wrappers exist for a couple of reasons.
+
+1)  Naming Convention:
+    Rigby Core uses a similar naming convention to prevent naming collision, it prepends every Rigby Core Class with a lowercase r.
+    Without wrapper classes there would be a blend of rClasses and fClasses that would pose a barrier to anyone new to Rigby.
+    
+2)  Natural Extension Points:
+    Rigby is intended to be an extension to the tremendous Flourish Library.  Although many wrappers do nothing, having the wrappers
+    available provides a natural control point to add extensions in the future.
+    
+3)  Division of Components:
+    By keeping Flourish and Rigby separate, Rigby can adopt the latest Flourish code in a modular fashion.  Keeping up to date with the
+    latest Flourish developments is crucial to the success of the library.  The official releases will always be fully tested, but as a 
+    Rigby user you are welcome to drop in the latest and greatest Flourish bleeding edge.

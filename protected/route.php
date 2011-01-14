@@ -3,9 +3,9 @@
 //Bootstrap the core of Rigby
 include 'init.php';
 
-$elements = fRouter::parse();
+$elements = rRouter::parse();
 
-$path   = SRC_ROOT . '/';
+$path   = rApplication::getPath('source');
 $target = null;
 $action = null;
 $last   = 'root';
@@ -13,7 +13,7 @@ $args   = array();
 $mode   = 'index';
 
 foreach($elements as $element) {
-  if(in_array($element, fRouter::reserved())) {
+  if(in_array($element, rRouter::reserved())) {
     $action = $element;
     $last = $element;
     $mode = $element;
@@ -71,14 +71,14 @@ switch($mode) {
 
 if($bypass || is_file($path . $target . '.php')) {
   $realpath = realpath($path . $target . '.php');
-  if(strpos($realpath, PROTECTED_ROOT) === FALSE) {
+  if(strpos($realpath, rApplication::getPath('protected')) === FALSE) {
     include $path . $target . '.php';
   } else {
-    fRouter::error(403);
+    rRouter::error(403);
   }
 } else {
-  fSession::set('error-route', SELF_URL);
-  fRouter::error(404);
+  rSession::set('rigby-error-route', rRouter::self());
+  rRouter::error(404);
 }
 
 ?>

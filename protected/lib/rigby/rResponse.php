@@ -5,25 +5,25 @@
  * @author Matt Nowack
  * @package Rigby
  */
-class fResponse {
+class rResponse {
   
   /**
    * Redirect with an error message
-   * @see fResponse::message()
-   * @see fErrors::persist()
+   * @see rResponse::message()
+   * @see rErrors::persist()
    * @global BASE_URL The default base url of the application
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, defaults to BASE_URL
    * @return nothing
    */
   static function error($message, $target = BASE_URL) {
-    fErrors::persist();
+    rErrors::persist();
     self::message('error', $message, $target);
   }
   
   /**
    * Redirect with a success message
-   * @see fResponse::message()
+   * @see rResponse::message()
    * @see BASE_URL The default base url of the application
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, default to BASE_URL
@@ -46,32 +46,32 @@ class fResponse {
     if(is_array($message)) {
       $message = '<ul><li>' . implode('</li><li>', $message) . '</li></ul>';
     }
-    fMessaging::create($type, $message);
+    rMessaging::create($type, $message);
     self::redirect($target);
   }
   
   /**
    * Perform a redirect with Value persistence, causes script to immediately terminate
-   * @see fValues
-   * @see fRouter::url()
-   * @see fURL::redirect()
+   * @see rValues
+   * @see rRouter::url()
+   * @see rURL::redirect()
    * @param string $target The url to redirect to
    * @return nothing
    */
   static function redirect($target) {    
-    fValues::reset();
+    rValues::reset();
     
     foreach($_GET as $key => $value) {
-      fValues::set($key, $value);
+      rValues::set($key, $value);
     }
     
     foreach($_POST as $key => $value) {
-      fValues::set($key, $value);
+      rValues::set($key, $value);
     }
     
-    fValues::persist();
+    rValues::persist();
     
-    fURL::redirect($target);
+    rURL::redirect($target);
     exit();
   }
 }

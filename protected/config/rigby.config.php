@@ -1,31 +1,16 @@
 <?php
   
   /**
-   * RIGBY_VERSION - The version number of the Rigby Framework
-   */
-  define('RIGBY_VERSION', '0.1');
-  
-  /**
    * Special Rigby __autoload function which handles core, Rigby, and Flourish classes
    * @param string $class The class to autoload
    */
   function __autoload($class) {
     if($class[0] === 'f') {
-      if(in_array($class, array('ActiveRecord',
-                                'fAJAX',
-                                'fErrors',
-                                'fForm',
-                                'fFormInput',
-                                'fResponse',
-                                'fRouter',
-                                'fTransaction',
-                                'fValues'       ))) {
-        $candidate = RIGBY_ROOT . $class . '.php';
-      } else {
-        $candidate = FLOURISH_CLASS_ROOT . $class . '.php';
-      }
+      $candidate = rApplication::getPath('flourish', $class . '.php');
+    } else if($class[0] === 'r') {
+      $candidate = rApplication::getPath('rigby', $class . '.php');
     } else {
-      $candidate = CLASS_ROOT . $class . '.php';
+      $candidate = rApplication::getPath('classes', $class . '.php');
     }
 
     if(is_file($candidate)) {

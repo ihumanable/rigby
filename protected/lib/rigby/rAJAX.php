@@ -2,11 +2,11 @@
 
 /**
  * Helper class to respond from Asynchronous Handlers
- * @see fJSON
+ * @see rJSON
  * @author Matt Nowack
  * @package Rigby
  */
-class fAJAX {
+class rAJAX {
   
   /**
    * Reply with an error message
@@ -30,14 +30,18 @@ class fAJAX {
   
   /**
    * Reply with a message
-   * @see fJSON::output()
+   * @see rJSON::output()
    * @param string $status The status to report back
    * @param string $message The message to report back
    * @return nothing
    */
   static function message($status, $message) {
-    fJSON::output(array('status' => $status,
+    rAJAX::output(array('status' => $status,
                         'message' => $message));
+  }
+  
+  static function output($object) {
+    rJSON::output($object);
     exit();
   }
   

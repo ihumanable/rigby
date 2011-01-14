@@ -2,11 +2,11 @@
 
 /** 
  * This class serializes form values on response so forms can be repopulated
- * @see fSession
+ * @see rSession
  * @author Matt Nowack
  * @package Rigby
  */
-class fValues {
+class rValues {
   private static $values;
   private static $init = false;
   
@@ -17,9 +17,9 @@ class fValues {
    */
   static function init() {
     if(!self::$init) {
-      self::$values = fSession::get('rigby-values', array());
+      self::$values = rSession::get('rigby-values', array());
       self::$init = true;
-      fSession::delete('rigby-values');
+      rSession::delete('rigby-values');
     }
   }
   
@@ -28,7 +28,7 @@ class fValues {
    * @return nothing
    */
   static function reset() {
-    fSession::delete('rigby-values');
+    rSession::delete('rigby-values');
     self::$values = array();
     self::$init = false;
   }
@@ -63,7 +63,7 @@ class fValues {
    * @return nothing
    */
   static function persist() {
-    fSession::set('rigby-values', self::$values);
+    rSession::set('rigby-values', self::$values);
   }
   
 }

@@ -1,6 +1,12 @@
 <?php
 
-class fErrors {
+/**
+ * Error registry to persist errors across requests
+ * @see rSession
+ * @author Matt Nowack
+ * @package Rigby
+ */
+class rErrors {
   private static $errors;
   private static $init = false;
   
@@ -11,9 +17,9 @@ class fErrors {
    */
   static function init() {
     if(!self::$init) {
-      self::$errors = fSession::get('rigby-errors', array());
+      self::$errors = rSession::get('rigby-errors', array());
       self::$init = true;
-      fSession::delete('rigby-errors');
+      rSession::delete('rigby-errors');
     }
   }
   
@@ -22,14 +28,14 @@ class fErrors {
    * @return nothing
    */
   static function reset() {
-    fSession::delete('rigby-errors');
+    rSession::delete('rigby-errors');
     self::$errors = array();
     self::$init = false;
   }
   
   /**
    * Get the value out of the session
-   * @see fErrors::init()
+   * @see rErrors::init()
    * @param string $key The key to retrieve
    * @param optional mixed $default The value to return if the key can not be found, defaults to null
    * @return mixed The value if the key is present, $default otherwise
@@ -58,6 +64,6 @@ class fErrors {
    * @return nothing
    */
   static function persist() {
-    fSession::set('rigby-errors', self::$errors);
+    rSession::set('rigby-errors', self::$errors);
   }
 }

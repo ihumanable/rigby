@@ -1,3 +1,3 @@
 Rigby
 
-Hamboning will save your life one day.
+Handboning will save your life one day.

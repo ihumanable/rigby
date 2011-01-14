@@ -2,26 +2,22 @@
 /**
  * The environment.config.php configuration has one purpose, to set up the environment constants
  * 
- * In a multi hosted environment you can define the URL_SUFFIX, this is useful for shared hosting and local development
+ * In a multi hosted environment you can define the suffix, this is useful for shared hosting and local development
  *
- * Leave the URL_SUFFIX blank if on a dedicated host, the code in common.config.php will understand this
+ * There is no need to set a suffix in a dedicated environment, the code in common.config.php will understand this
+ *
+ * If you wish to use a default timezone other than UTC, use rApplication::setTimezone()
  *
  * This file should be deployed once to an environment, this will cause route.php to load the correct environment configuration.
  */
   
-  /**
-   * ENVIRONMENT - The human readable environment flag.  This will also determine what configuration file will be loaded.
-   */
-  define('ENVIRONMENT', 'development');
+  //The human readable environment flag.  This will also determine what configuration file will be loaded.
+  rApplication::setEnvironment('development');
   
-  /** 
-   * URL_SUFFIX - An optional suffix useful for shared hosting, non-root installs, and local development.
-   */
-  define('URL_SUFFIX', 'rigby');
+  //An optional suffix useful for shared hosting, non-root installs, and local development.
+  rApplication::setSuffix('rigby');
   
-  /**
-   * TIMEZONE - Default timezone for the application
-   */
-  define('TIMEZONE', 'UTC');
-
+  //Set up the Application Version
+  rApplication::setVersion(0.1);
+  
 ?>

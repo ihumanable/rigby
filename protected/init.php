@@ -1,28 +1,31 @@
 <?php
 
-define('SRC_ROOT', realpath(dirname(__FILE__) . '/../') . '/');
-  define('ERROR_ROOT', SRC_ROOT . 'error/');
-  define('PROTECTED_ROOT', SRC_ROOT . 'protected/');
-    define('CONFIG_ROOT', PROTECTED_ROOT . 'config/');
-    define('DATABASE_ROOT', PROTECTED_ROOT . 'database/');
-    define('LIB_ROOT', PROTECTED_ROOT . 'lib/');
-      define('CLASS_ROOT', LIB_ROOT . 'classes/');
-      define('RIGBY_ROOT', LIB_ROOT . 'rigby/');
-      define('FLOURISH_ROOT', LIB_ROOT . 'flourish/');
-        define('FLOURISH_CLASS_ROOT', FLOURISH_ROOT . 'classes/');
-        define('FLOURISH_TEST_ROOT', FLOURISH_ROOT . 'tests/');
-    define('SCRIPT_ROOT', PROTECTED_ROOT . 'scripts/');
-  define('RESOURCE_ROOT', SRC_ROOT . 'resources/');
-    define('CSS_ROOT', RESOURCE_ROOT . 'css/');
-    define('IMAGE_ROOT', RESOURCE_ROOT . 'images/');
-    define('JS_ROOT', RESOURCE_ROOT . 'js/');
-    define('SASS_ROOT', RESOURCE_ROOT . 'sass/');
-    define('TEMPLATE_ROOT', RESOURCE_ROOT . 'templates/');
+//We need to get a hold of the rApplication class
+$applicationSource = realpath(dirname(__FILE__) . '/../') . '/protected/lib/rigby/rApplication.php';
+include $applicationSource;
 
-include CONFIG_ROOT . 'rigby.config.php';
-include CONFIG_ROOT . 'environment.config.php';
-include CONFIG_ROOT . 'common.config.php';
-include CONFIG_ROOT . ENVIRONMENT . '.config.php';
+//Now that we have the rApplication class we can use it to set up our application
+rApplication::setPath('source', realpath(dirname(__FILE__) . '/../') . '/');
+  rApplication::setSubpath('source', 'error');
+  rApplication::setSubpath('source', 'protected');
+    rApplication::setSubpath('protected', 'config');
+    rApplication::setSubpath('protected', 'database');
+    rApplication::setSubpath('protected', 'lib');
+      rApplication::setSubpath('lib', 'classes');
+      rApplication::setSubpath('lib', 'flourish');
+      rApplication::setSubpath('lib', 'rigby');
+    rApplication::setSubpath('protected', 'scripts');
+  rApplication::setSubpath('source', 'resources');
+    rApplication::setSubpath('resources', 'css');
+    rApplication::setSubpath('resources', 'images');
+    rApplication::setSubpath('resources', 'js');
+    rApplication::setSubpath('resources', 'sass');
+    rApplication::setSubpath('resources', 'templates');
+
+include rApplication::getPath('config', 'rigby.config.php');
+include rApplication::getPath('config', 'environment.config.php');
+include rApplication::getPath('config', 'common.config.php');
+include rApplication::getPath('config', rApplication::getEnvironment() . '.config.php');
 
 /**
  * At this point all filesystem constants are set up and all classes should be automatically accessible.
