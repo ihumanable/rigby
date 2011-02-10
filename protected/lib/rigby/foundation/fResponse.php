@@ -22,13 +22,13 @@ class fResponse {
    * @see fResponse::message()
    * @see fErrors::persist()
    * @see fValues::persist()
-   * @see fApplication::base()
+   * @see fRouter::base()
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, defaults to BASE_URL
    * @return nothing
    */
   static function error($message, $target = null) {
-    $target = ($target ? $target : fApplication::base());
+    $target = ($target ? $target : fRouter::base());
     fErrors::persist();
     fValues::persist();
     self::message('error', $message, $target);
@@ -37,13 +37,13 @@ class fResponse {
   /**
    * Redirect with a success message
    * @see fResponse::message()
-   * @see fApplication::base()
+   * @see fRouter::base()
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, default to BASE_URL
    * @return nothing
    */
   static function success($message, $target = null) {
-    $target = ($target ? $target : fApplication::base());
+    $target = ($target ? $target : fRouter::base());
     self::message('success', $message, $target);
   }
   
