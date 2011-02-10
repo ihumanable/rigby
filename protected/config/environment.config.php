@@ -12,12 +12,12 @@
  */
   
   //The human readable environment flag.  This will also determine what configuration file will be loaded.
-  rApplication::setEnvironment('development');
+  fApplication::setEnvironment('development');
   
   //An optional suffix useful for shared hosting, non-root installs, and local development.
-  rApplication::setSuffix('rigby');
+  fApplication::setSuffix('rigby');
   
   //Set up the Application Version
-  rApplication::setVersion(0.1);
+  fApplication::setVersion(0.1);
   
 ?>
