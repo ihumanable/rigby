@@ -22,12 +22,13 @@ class fResponse {
    * @see fResponse::message()
    * @see fErrors::persist()
    * @see fValues::persist()
-   * @global BASE_URL The default base url of the application
+   * @see fApplication::base()
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, defaults to BASE_URL
    * @return nothing
    */
-  static function error($message, $target = BASE_URL) {
+  static function error($message, $target = null) {
+    $target = ($target ? $target : fApplication::base());
     fErrors::persist();
     fValues::persist();
     self::message('error', $message, $target);
@@ -35,13 +36,14 @@ class fResponse {
   
   /**
    * Redirect with a success message
-   * @see rResponse::message()
-   * @see BASE_URL The default base url of the application
+   * @see fResponse::message()
+   * @see fApplication::base()
    * @param array | string $message The message to display, if an array it will be turned into a suitable string for display
    * @param optional string $target The url to redirect to, default to BASE_URL
    * @return nothing
    */
-  static function success($message, $target = BASE_URL) {
+  static function success($message, $target = null) {
+    $target = ($target ? $target : fApplication::base());
     self::message('success', $message, $target);
   }
   
@@ -64,9 +66,7 @@ class fResponse {
   
   /**
    * Perform a redirect with Value persistence, causes script to immediately terminate
-   * @see rValues
-   * @see rRouter::url()
-   * @see rURL::redirect()
+   * @see fURL::redirect()
    * @param string $target The url to redirect to
    * @return nothing
    */

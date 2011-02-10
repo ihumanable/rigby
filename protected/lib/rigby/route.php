@@ -13,7 +13,7 @@ $args   = array();
 $mode   = 'index';
 
 foreach($elements as $element) {
-  if(in_array($element, rRouter::reserved())) {
+  if(in_array($element, fRouter::reserved())) {
     $action = $element;
     $last = $element;
     $mode = $element;
@@ -77,7 +77,7 @@ if($bypass || is_file($path . $target . '.php')) {
     fRouter::error(403);
   }
 } else {
-  fSession::set('rigby-error-route', rRouter::self());
+  fSession::set('rigby-error-route', fRouter::self());
   fRouter::error(404);
 }
 
