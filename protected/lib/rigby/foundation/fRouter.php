@@ -171,7 +171,7 @@ class fRouter {
         }
       }
     }
-    return result;
+    return $result;
   }
   
   /**
