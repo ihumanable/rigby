@@ -4,10 +4,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title><?php echo $this->prepare('title') ?></title>
     <?php $this->place('css') ?>
-    <!--[if lt IE 8]<link rel="stylesheet" href="<?php echo CSS_URL ?>/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <!--[if lt IE 8]<link rel="stylesheet" href="<?php echo fRouter::getRoute('css', 'blueprint/ie.css') ?>" type="text/css" media="screen, projection"><![endif]-->
     <script type="text/javascript">
-      var BASE_URL = '<?php echo BASE_URL; ?>';
-      var SELF_URL = '<?php echo SELF_URL; ?>';
+      var fRouter = {
+        base: '<?php echo fRouter::base() ?>',
+        self: '<?php echo fRouter::self() ?>'
+      }
     </script>
     <?php $this->place('js') ?>
   </head>

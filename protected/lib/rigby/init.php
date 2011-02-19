@@ -29,6 +29,7 @@ fRigby::registerClass('ActiveRecord');
 fRigby::registerClass('fAJAX');
 fRigby::registerClass('fApplication');
 fRigby::registerClass('fErrors');
+fRigby::registerClass('fIdentity');
 fRigby::registerClass('fResponse');
 fRigby::registerClass('fRigby');
 fRigby::registerClass('fRouter');
