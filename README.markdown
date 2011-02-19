@@ -2,9 +2,9 @@
 
 ## Isn't adding a framework to an unframework... kinda... stupid.
 
-You make an excellent point, imaginary man asking that question in my brain.  I have used Flourish professionally for about a year now, it is without a doubt the finest collection of web centric classes available for PHP.  That being said I found myself repeating the same patterns for every application, and what was worse I saw in the message boards newcomers that were confused as to how best to use Flourish.  
+You make an excellent point, imaginary man asking that question in my brain.  I have used Flourish professionally for about a year now, it is without a doubt the finest collection of web centric classes available for PHP.  That being said, I found myself repeating the same patterns for every application, and what was worse I saw in the message boards newcomers that were confused as to how best to use Flourish.  
 
-I decided to right Rigby out of some selfishness and some selflessness, like all good open source.  I was tired of making an improvement in one project and trying to port it to another, or returning to a project 6 months later and realizing that I don't have access to some super cool new abstraction I recently wrote.  I realized what I needed was a holding area for all those good ideas to live that could easily be shared amongst all my projects, and so Rigby was born.
+I decided to write Rigby out of some selfishness and some selflessness, like all good open source.  I was tired of making an improvement in one project and trying to port it to another, or returning to a project 6 months later and realizing that I don't have access to some super cool new abstraction I recently wrote.  I realized what I needed was a holding area for all those good ideas to live that could easily be shared amongst all my projects, and so Rigby was born.
 
 I also thought that if I found things like Environment Specific Configurations, centralized routing, and common project structure useful, so might other people.  
 
